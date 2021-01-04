@@ -1,0 +1,538 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>N & LW Lawn Care - Landscaping Bootstrap4 HTML5 Responsive Template </title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"" rel=" stylesheet">
+    <!-- Fontawesome CSS -->
+    <link href="{% static 'css/all.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-light top-nav fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{% static 'images/logo1.png' %}" alt="logo" />
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="fas fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/services">Services</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                    {% if user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/accounts/logout">logout</a>
+                    </li>
+                    <li class="nav-link">Hello {{ user.username }}</li>
+
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/accounts/register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/accounts/login">login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav><br><br><br>
+
+
+    <!-- nav end here  -->
+
+    <div class="card polaroid">
+        <h1 color="red" text align="center">Dignoise Your Plant</h1>
+    </div>
+
+    <form method="post" action="/data_save" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-6 portfolio-item">
+                <div class="card h-100  polaroid">
+                    <div class="card-body">
+                        <h5>Choose the type of plant You want to Dignoise</h5>
+                        <div>
+                            <center>
+                                <div class="custom-select1" style="width:200px;">
+                                    <select name="plant">
+                                        <option value="0">Select Plant:</option>
+                                        <option value="Tomato">Tomato</option>
+                                        <option value="Apple">Apple</option>
+                                        <option value="Corn">Corn</option>
+                                        <option value="Grapes">Grapes</option>
+                                        <option value="5">Honda</option>
+                                    </select>
+                                </div>
+                                <span>
+                                    <p style="color:red;">{{massage}}</p>
+                                </span>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 portfolio-item ">
+                <div class="card h-100 polaroid">
+                    <div class="card-body">
+                        <h5>Choose the type of plant You want to Dignoise</h5>
+                        <input type="file" id="actual-btn" name="myfile" hidden />
+                        <label for="actual-btn">Choose File</label>
+                        <span id="file-chosen">No file chosen</span>
+                        <button class="btn btn-primary" type="submit">Upload File</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% if info.disease_name %}
+
+    <div class="card1">
+        <h4>
+            The disease detected in the plant is {{ info.disease_name }}
+        </h4>
+    </div>
+
+    <div class="card1">
+        <div class='titlebox '>
+            <i class='fas fa-plus-square' style='font-size:40px;color:red;float:left'></i>
+            <h2>{{ info.disease_name }} disease description</h2>
+        </div>
+        <ul >
+            <l><p>{{info.disease_treatments1}}</p></l>
+            <l><p>{{info.disease_treatments2}}</p></l>
+            <l><p>{{info.disease_treatments3}}</p></l>
+            <l><p>{{info.disease_treatments4}}</p></l>
+        </ul>   
+    </div>
+
+    <div class="card1">
+        <div class='titlebox '>
+            <i class='fas fa-plus-square' style='font-size:40px;color:red;float:left'></i>
+            <h2>{{ info.disease_name }} control</h2>
+        </div>
+        <ul >
+            <section><l><p>{{info.disease_control1}}</p></l></section>
+            <section><l><p>{{info.disease_control2}}</p></l></section>
+            <section><l><p>{{info.disease_control3}}</p></l></section>
+            <section><l><p>{{info.disease_control4}}</p></l></section>
+        </ul>
+    </div>
+
+    {% endif %}
+
+    </div>
+    </div>
+
+
+    <style>
+        /* css for choose plant type  */
+
+        /*the container must be positioned relative:*/
+        .custom-select1 {
+            position: relative;
+            font-family: Arial;
+            margin-top: 15px;
+        }
+
+        .custom-select1 select {
+            display: none;
+            /*hide original SELECT element:*/
+        }
+
+        .select-selected {
+            background-color: DodgerBlue;
+            border-radius: 0.3rem;
+        }
+
+        /*style the arrow inside the select element:*/
+        .select-selected:after {
+            position: absolute;
+            content: "";
+            top: 14px;
+            right: 10px;
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+
+            border-color: #fff transparent transparent transparent;
+        }
+
+        /*point the arrow upwards when the select box is open (active):*/
+        .select-selected.select-arrow-active:after {
+            border-color: transparent transparent #fff transparent;
+            top: 7px;
+        }
+
+        /*style the items (options), including the selected item:*/
+        .select-items div,
+        .select-selected {
+            color: #ffffff;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /*style items (options):*/
+        .select-items {
+            position: absolute;
+            background-color: DodgerBlue;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 99;
+        }
+
+        /*hide the items when the select box is closed:*/
+        .select-hide {
+            display: none;
+        }
+
+        .select-items div:hover,
+        .same-as-selected {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+
+
+        /* css for choose file button */
+
+        label {
+            background-color: indigo;
+            color: white;
+            padding: 0.5rem;
+            font-family: sans-serif;
+            border-radius: 0.3rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        #file-chosen {
+            margin-left: 0.3rem;
+            font-family: sans-serif;
+        }
+    </style>
+
+    <!-- Script for choose file button  -->
+    <script>
+        const actualBtn = document.getElementById('actual-btn');
+
+        const fileChosen = document.getElementById('file-chosen');
+
+        actualBtn.addEventListener('change', function () {
+            fileChosen.textContent = this.files[0].name
+        })
+
+    </script>
+
+    <!-- Script for slecting plant type  -->
+    <script>
+        var x, i, j, l, ll, selElmnt, a, b, c;
+        /*look for any elements with the class "custom-select1":*/
+        x = document.getElementsByClassName("custom-select1");
+        l = x.length;
+        for (i = 0; i < l; i++) {
+            selElmnt = x[i].getElementsByTagName("select")[0];
+            ll = selElmnt.length;
+            /*for each element, create a new DIV that will act as the selected item:*/
+            a = document.createElement("DIV");
+            a.setAttribute("class", "select-selected");
+            a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+            x[i].appendChild(a);
+            /*for each element, create a new DIV that will contain the option list:*/
+            b = document.createElement("DIV");
+            b.setAttribute("class", "select-items select-hide");
+            for (j = 1; j < ll; j++) {
+                /*for each option in the original select element,
+                create a new DIV that will act as an option item:*/
+                c = document.createElement("DIV");
+                c.innerHTML = selElmnt.options[j].innerHTML;
+                c.addEventListener("click", function (e) {
+                    /*when an item is clicked, update the original select box,
+                    and the selected item:*/
+                    var y, i, k, s, h, sl, yl;
+                    s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                    sl = s.length;
+                    h = this.parentNode.previousSibling;
+                    for (i = 0; i < sl; i++) {
+                        if (s.options[i].innerHTML == this.innerHTML) {
+                            s.selectedIndex = i;
+                            h.innerHTML = this.innerHTML;
+                            y = this.parentNode.getElementsByClassName("same-as-selected");
+                            yl = y.length;
+                            for (k = 0; k < yl; k++) {
+                                y[k].removeAttribute("class");
+                            }
+                            this.setAttribute("class", "same-as-selected");
+                            break;
+                        }
+                    }
+                    h.click();
+                });
+                b.appendChild(c);
+            }
+            x[i].appendChild(b);
+            a.addEventListener("click", function (e) {
+                /*when the select box is clicked, close any other select boxes,
+                and open/close the current select box:*/
+                e.stopPropagation();
+                closeAllSelect(this);
+                this.nextSibling.classList.toggle("select-hide");
+                this.classList.toggle("select-arrow-active");
+            });
+        }
+        function closeAllSelect(elmnt) {
+            /*a function that will close all select boxes in the document,
+            except the current select box:*/
+            var x, y, i, xl, yl, arrNo = [];
+            x = document.getElementsByClassName("select-items");
+            y = document.getElementsByClassName("select-selected");
+            xl = x.length;
+            yl = y.length;
+            for (i = 0; i < yl; i++) {
+                if (elmnt == y[i]) {
+                    arrNo.push(i)
+                } else {
+                    y[i].classList.remove("select-arrow-active");
+                }
+            }
+            for (i = 0; i < xl; i++) {
+                if (arrNo.indexOf(i)) {
+                    x[i].classList.add("select-hide");
+                }
+            }
+        }
+        /*if the user clicks anywhere outside the select box,
+        then close all select boxes:*/
+        document.addEventListener("click", closeAllSelect);
+    </script>
+
+
+    <style>
+        .center {
+            margin: auto;
+            width: 80%;
+
+            padding: 10px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Add a gray background color with some padding */
+        body {
+            font-family: Arial;
+            padding: 20px;
+            background: #f1f1f1;
+        }
+
+
+
+        /* Create two unequal columns that floats next to each other */
+        /* Left column */
+        .row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .leftcolumn {
+            display: inline;
+            float: left;
+            width: 100%;
+        }
+
+
+        /* Add a card effect for articles */
+        .card {
+            background-color: #a8ecdb71;
+            padding: 20px;
+            margin-top: 20px;
+            
+        }
+
+        .card1 {
+            background-color: #a8ecdb71;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            margin: auto;
+            text-align: left;
+            font-family: arial;
+          }
+
+
+        .titlebox h2 {
+            padding-left: 40px;
+            color: green;
+
+        }
+
+
+        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 800px) {
+
+            .leftcolumn,
+            .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+        }
+
+        div.polaroid {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            text-align: center;
+        }
+
+        
+ 
+
+    </style>
+    <br>
+
+
+    
+    <!--footer starts from here-->
+    <footer class="footer">
+        <div class="container bottom_border">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col">
+                    <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
+                    <!--headin5_amrc-->
+                    <p class="mb10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                        Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                    <p><i class="fa fa-location-arrow"></i> 9878/25 sec 9 rohini 35 </p>
+                    <p><i class="fa fa-phone"></i> +91-9999878398 </p>
+                    <p><i class="fa fa fa-envelope"></i> info@example.com </p>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col">
+                    <h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
+                    <!--headin5_amrc ends here-->
+                    <ul class="footer_ul2_amrc">
+                        <li>
+                            <a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a>
+                            <p>Lorem Ipsum is simply dummy printing...<a href="#">https://www.lipsum.com/</a></p>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a>
+                            <p>Lorem Ipsum is simply dummy printing...<a href="#">https://www.lipsum.com/</a></p>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a>
+                            <p>Lorem Ipsum is simply dummy printing...<a href="#">https://www.lipsum.com/</a></p>
+                        </li>
+                    </ul>
+                    <!--footer_ul2_amrc ends here-->
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
+                    <!--headin5_amrc-->
+                    <ul class="footer_ul_amrc">
+                        <li><a href="#">Default Version</a></li>
+                        <li><a href="#">Boxed Version</a></li>
+                        <li><a href="#">Our Team </a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Services</a></li>
+                        <li><a href="#">Get In Touch</a></li>
+                    </ul>
+                    <!--footer_ul_amrc ends here-->
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 ">
+                    <h5 class="headin5_amrc col_white_amrc pt2">Recent posts</h5>
+                    <!--headin5_amrc-->
+                    <ul class="footer_ul_amrc">
+                        <li class="media">
+                            <div class="media-left">
+                                <img class="img-fluid" src="{% static 'images/post-img-01.jpg' %}" alt="" />
+                            </div>
+                            <div class="media-body">
+                                <p>How to find best dog food?</p>
+                                <span>22 Sep 2018</span>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left">
+                                <img class="img-fluid" src="{% static 'images/post-img-02.jpg' %}" alt="" />
+                            </div>
+                            <div class="media-body">
+                                <p>How to find best dog food?</p>
+                                <span>34 Sep 2018</span>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left">
+                                <img class="img-fluid" src="{% static 'images/post-img-03.jpg' %}" alt="" />
+                            </div>
+                            <div class="media-body">
+                                <p>How to find best dog food?</p>
+                                <span>30 Sep 2018</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--footer_ul_amrc ends here-->
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="footer-logo">
+                <a href="#"><img src="{% static 'images/footer-logo.png' %}" alt="" /></a>
+            </div>
+            <!--foote_bottom_ul_amrc ends here-->
+            <p class="copyright text-center">All Rights Reserved. &copy; 2018 <a href="#">N & LW Lawn Care</a> Design By
+                :
+                <a href="https://html.design/">html design</a>
+            </p>
+            <ul class="social_footer_ul">
+                <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="https://www.linkedin.com"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+            <!--social_footer_ul ends here-->
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>
