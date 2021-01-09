@@ -11,5 +11,6 @@ scipy==1.4.1
 tensorflow-cpu==2.2.0
 whitenoise==5.2.0
 pillow==7.2.0
-
+json
+ipstack
 
