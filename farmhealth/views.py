@@ -67,7 +67,7 @@ def create_grapes_model(x):
 
 def home(request):
     geo_lookup = GeoLookup("3a29cf8ecc0d557689bf7365aaf81d7d")
-    location = geo_lookup.get_location('https://farm97.herokuapp.com/')
+    location = geo_lookup.get_own_location()
     print(location)
     return render(request, 'index.html')
 
