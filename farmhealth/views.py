@@ -6,7 +6,6 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.applications.mobilenet import preprocess_input
 import os 
-import json
 from PIL import Image
 from .models import  data_saved, tomato_plant
 from tensorflow.keras.models import Model
