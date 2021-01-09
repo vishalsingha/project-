@@ -6,10 +6,12 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.applications.mobilenet import preprocess_input
 import os 
+import json
 from PIL import Image
 from .models import  data_saved, tomato_plant
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import  Dropout, BatchNormalization, Dense, GlobalAveragePooling2D
+from ipstack import GeoLookup
 #####################################################################
 #base model
 base_model=tf.keras.applications.MobileNet(weights='imagenet',input_shape=(128, 128, 3), include_top=False) 
@@ -65,6 +67,9 @@ def create_grapes_model(x):
 # Create your views here.
 
 def home(request):
+    geo_lookup = GeoLookup("3a29cf8ecc0d557689bf7365aaf81d7d")
+    location = geo_lookup.get_location('http://localhost:8000/')
+    print(location)
     return render(request, 'index.html')
 
 def about(request):
