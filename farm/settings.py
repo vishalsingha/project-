@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'farm',
         'USER': 'postgres',
-        'PASSWORD': '4321',
+        'PASSWORD': '****',
         'HOST': 'localhost',
     }
 }
@@ -144,5 +144,5 @@ EMAIl_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'vishal.singh.che19@itbhu.ac.in'
-EMAIL_HOST_PASSWORD = 'Cs979429@'
+EMAIL_HOST_USER = '******************'
+EMAIL_HOST_PASSWORD = '********'
